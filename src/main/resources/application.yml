@@ -1,0 +1,24 @@
+# /swagger-ui/index.html access to html page
+
+spring:
+  datasource:
+    url: jdbc:${DB_TESTAPI}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+
+exception:
+  order-not-found:
+    default-message: "Заказ не найден"
+    message-with-id: "Заказ с id %d не найден!"
+  product-not-found:
+    default-message: "Продукт не найден"
+    message-with-id: "Продукт с id %d не найден!"
+  not-enough:
+    default-message: "Недостаточно единиц на складе"
+    message-with-count: "На складе осталось только %d"
