@@ -5,6 +5,8 @@ import com.vaixle.testapi.payload.request.UpdateProductRequest;
 import com.vaixle.testapi.payload.response.ProductResponse;
 import com.vaixle.testapi.payload.response.ProductsResponse;
 import com.vaixle.testapi.service.ProductService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
@@ -26,21 +28,21 @@ public class ProductController {
     ProductService productService;
 
     @GetMapping
-//    @ApiOperation(
-//            value = "Получить продукты",
-//            notes = "Получить список продуктов",
-//            response = ProductResponse.class)
+    @Operation(summary = "Получить продукты",
+            description = "Возвращает список продуктов с детальной информацией",
+            operationId = "getAllProducts")
     public ProductsResponse getAllProducts() {
         return productService.getAllProducts();
     }
 
     @GetMapping("/{id}")
-//    @ApiOperation(
-//            value = "Получить продукт",
-//            notes = "Получить продукт по id",
-//            response = ProductResponse.class)
+    @Operation(summary = "Получить продукт по ID",
+            description = "Возвращает продукт по ID с детальной информацией",
+            operationId = "getProductById",
+            parameters = {
+                    @Parameter(name = "id", description = "ID продукта для извлечения", required = true, example = "123")
+            })
     public ProductResponse getProductById(
-//            @ApiParam(name = "id", value = "Id продукта", example = "1", required = true)
             @Pattern(regexp = "\\d+", message = "Некорректный id")
             @PathVariable String id) {
         return productService.getProductById(Long.parseLong(id));
@@ -48,45 +50,48 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-//    @ApiOperation(
-//            value = "Создать продукт",
-//            notes = "Создание продукта",
-//            response = ProductResponse.class)
+    @Operation(summary = "Создать продукта",
+            description = "Создание продукта",
+            operationId = "createProduct")
     public ProductResponse createProduct(@Valid @RequestBody CreateProductRequest createProductRequest) {
         return productService.createProduct(createProductRequest);
     }
 
     @DeleteMapping("/{id}")
-//    @ApiOperation(
-//            value = "Удалить продукт",
-//            notes = "Удаление продукта по id",
-//            response = ProductResponse.class)
+    @GetMapping("/{id}")
+    @Operation(summary = "Удалить продукт по ID",
+            description = "Полностью удаляет продукт по ID",
+            operationId = "deleteProduct",
+            parameters = {
+                    @Parameter(name = "id", description = "ID продукта для удаления", required = true, example = "123")
+            })
     public ProductResponse deleteProduct(
-//            @ApiParam(name = "id", value = "Id продукта", example = "1", required = true)
             @Pattern(regexp = "\\d+", message = "Некорректный id")
             @PathVariable String id) {
         return productService.deleteProduct(Long.parseLong(id));
     }
 
     @PatchMapping("/{id}")
-//    @ApiOperation(
-//            value = "Обновить продукт",
-//            notes = "Обновить название и описание продукта",
-//            response = ProductResponse.class)
+    @Operation(summary = "Обновить продукт по ID",
+            description = "Частичное обновление продукта по ID",
+            operationId = "patchProduct",
+            parameters = {
+                    @Parameter(name = "id", description = "ID продукта для обновления", required = true, example = "123")
+            })
     public ProductResponse patchProduct(
-//            @ApiParam(name = "id", value = "Id продукта", example = "1", required = true)
             @Pattern(regexp = "\\d+", message = "Некорректный id")
             @PathVariable String id, @RequestBody UpdateProductRequest updateProductRequest) {
         return productService.patchProduct(Long.parseLong(id), updateProductRequest);
     }
 
     @PutMapping("/{id}")
-//    @ApiOperation(
-//            value = "Обновить продукт",
-//            notes = "Обновить название и описание продукта",
-//            response = ProductResponse.class)
+    @Operation(summary = "Обновить продукт по ID",
+            description = "Полное обновление продукта по ID",
+            operationId = "putProduct",
+            parameters = {
+                    @Parameter(name = "id", description = "ID продукта для обновления", required = true, example = "123")
+            })
     public ProductResponse putProduct(
-//            @ApiParam(name = "id", value = "Id продукта", example = "1", required = true)
             @Pattern(regexp = "\\d+", message = "Некорректный id")
             @PathVariable String id, @RequestBody UpdateProductRequest updateProductRequest) {
         return productService.putProduct(Long.parseLong(id), updateProductRequest);

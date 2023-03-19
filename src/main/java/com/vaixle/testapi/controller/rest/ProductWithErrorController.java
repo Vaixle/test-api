@@ -3,6 +3,8 @@ package com.vaixle.testapi.controller.rest;
 import com.vaixle.testapi.payload.request.UpdateProductRequest;
 import com.vaixle.testapi.payload.response.ProductResponse;
 import com.vaixle.testapi.service.ProductService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
@@ -23,12 +25,13 @@ public class ProductWithErrorController {
     ProductService productService;
 
     @PatchMapping("/{id}")
-//    @ApiOperation(
-//            value = "Обновить продукт",
-//            notes = "Обновить название и описание продукта",
-//            response = ProductResponse.class)
+    @Operation(summary = "Обновить продукт по ID",
+            description = "Частичное обновление продукта по ID",
+            operationId = "patchProductWithError",
+            parameters = {
+                    @Parameter(name = "id", description = "ID продукта для обновления", required = true, example = "123")
+            })
     public ProductResponse patchProduct(
-//            @ApiParam(name = "id", value = "Id продукта", example = "1", required = true)
             @Pattern(regexp = "\\d+", message = "Некорректный id")
             @PathVariable String id,@Valid @RequestBody UpdateProductRequest updateProductRequest) {
         return productService.patchProduct(Long.parseLong(id), updateProductRequest);
