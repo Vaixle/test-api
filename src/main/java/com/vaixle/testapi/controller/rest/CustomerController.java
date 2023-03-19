@@ -2,6 +2,7 @@ package com.vaixle.testapi.controller.rest;
 
 import com.vaixle.testapi.model.dto.CustomerBaseDto;
 import com.vaixle.testapi.service.CustomerService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/customers")
+@Tag(name = "Покупатели", description = "Операции над покупателями")
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class CustomerController {
 

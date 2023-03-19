@@ -3,6 +3,7 @@ package com.vaixle.testapi.controller.rest;
 import com.vaixle.testapi.payload.request.UpdateProductRequest;
 import com.vaixle.testapi.payload.response.ProductResponse;
 import com.vaixle.testapi.service.ProductService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.AccessLevel;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 @RequestMapping("/api/products2")
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@Tag(name = "Продукты2", description = "Операции над продуктами")
 public class ProductWithErrorController {
 
     ProductService productService;

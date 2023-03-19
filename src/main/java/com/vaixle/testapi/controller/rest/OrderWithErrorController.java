@@ -3,6 +3,7 @@ package com.vaixle.testapi.controller.rest;
 import com.vaixle.testapi.payload.request.CreateOrderRequest;
 import com.vaixle.testapi.payload.response.CreateOrderResponse;
 import com.vaixle.testapi.service.OrderService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 @RequestMapping("/api/orders2")
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@Tag(name = "Заказы2", description = "Операции над заказами")
 public class OrderWithErrorController {
 
     OrderService orderService;

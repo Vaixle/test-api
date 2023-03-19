@@ -5,6 +5,7 @@ import com.vaixle.testapi.payload.response.CreateOrderResponse;
 import com.vaixle.testapi.payload.response.OrderResponse;
 import com.vaixle.testapi.payload.response.OrdersResponse;
 import com.vaixle.testapi.service.OrderService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.AccessLevel;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/orders")
+@Tag(name = "Заказы", description = "Операции над заказами")
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class OrderController {
 
