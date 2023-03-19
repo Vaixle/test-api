@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.vaixle.testapi.model.dto.CustomerDto;
 import com.vaixle.testapi.model.dto.OrderItemRequestDto;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -21,10 +22,12 @@ public class CreateOrderRequest implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
+    @Valid
     @JsonUnwrapped
     @NotNull(message = "Поле данные покупателя не может быть пустым")
     CustomerDto customer;
 
+    @Valid
     @JsonProperty("order_details")
     @NotNull(message = "Поле заказанные продукты не может быть пустым")
     List<OrderItemRequestDto> orderItems;

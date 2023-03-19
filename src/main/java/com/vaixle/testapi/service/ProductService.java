@@ -12,5 +12,7 @@ public interface ProductService {
     ProductResponse getProductById(long id);
     ProductResponse createProduct(CreateProductRequest createProductRequest);
     ProductResponse deleteProduct(long id);
-    ProductResponse updateProduct(long id, UpdateProductRequest updateProductRequest);
+    ProductResponse patchProduct(long id, UpdateProductRequest updateProductRequest);
+
+    ProductResponse putProduct(long id, UpdateProductRequest updateProductRequest);
 }

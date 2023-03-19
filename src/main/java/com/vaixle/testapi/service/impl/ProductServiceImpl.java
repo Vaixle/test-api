@@ -39,7 +39,7 @@ public class ProductServiceImpl implements ProductService {
     @Transactional
     public ProductResponse getProductById(long id) {
         Product product = productRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException(exceptionConfig.getProductNotFoundMessageWithId(),id));
+                .orElseThrow(() -> new NotFoundException(exceptionConfig.getProductNotFoundMessageWithId(), id));
         return new ProductResponse(product);
     }
 
@@ -62,9 +62,23 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     @Transactional
-    public ProductResponse updateProduct(long id, UpdateProductRequest updateProductRequest) {
+    public ProductResponse patchProduct(long id, UpdateProductRequest updateProductRequest) {
         Product product = productRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException(exceptionConfig.getProductNotFoundMessageWithId(),id));
+                .orElseThrow(() -> new NotFoundException(exceptionConfig.getProductNotFoundMessageWithId(), id));
+        if (updateProductRequest.getName() != null) {
+            product.setName(updateProductRequest.getName());
+        }
+        if (updateProductRequest.getDescription() != null) {
+            product.setDescription(updateProductRequest.getDescription());
+        }
+        product = productRepository.save(product);
+        return new ProductResponse(product);
+    }
+
+    @Override
+    public ProductResponse putProduct(long id, UpdateProductRequest updateProductRequest) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(exceptionConfig.getProductNotFoundMessageWithId(), id));
         product.setName(updateProductRequest.getName());
         product.setDescription(updateProductRequest.getDescription());
         product = productRepository.save(product);

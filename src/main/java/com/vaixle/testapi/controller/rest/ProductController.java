@@ -71,11 +71,22 @@ public class ProductController {
 //            value = "Обновить продукт",
 //            notes = "Обновить название и описание продукта",
 //            response = ProductResponse.class)
-    public ProductResponse updateProduct(
+    public ProductResponse patchProduct(
 //            @ApiParam(name = "id", value = "Id продукта", example = "1", required = true)
             @Pattern(regexp = "\\d+", message = "Некорректный id")
-            @PathVariable String id,
-            @Valid @RequestBody UpdateProductRequest updateProductRequest) {
-        return productService.updateProduct(Long.parseLong(id), updateProductRequest);
+            @PathVariable String id, @RequestBody UpdateProductRequest updateProductRequest) {
+        return productService.patchProduct(Long.parseLong(id), updateProductRequest);
+    }
+
+    @PutMapping("/{id}")
+//    @ApiOperation(
+//            value = "Обновить продукт",
+//            notes = "Обновить название и описание продукта",
+//            response = ProductResponse.class)
+    public ProductResponse putProduct(
+//            @ApiParam(name = "id", value = "Id продукта", example = "1", required = true)
+            @Pattern(regexp = "\\d+", message = "Некорректный id")
+            @PathVariable String id, @RequestBody UpdateProductRequest updateProductRequest) {
+        return productService.putProduct(Long.parseLong(id), updateProductRequest);
     }
 }

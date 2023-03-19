@@ -1,5 +1,6 @@
 package com.vaixle.testapi.controller.advice;
 
+import com.vaixle.testapi.exception.NotEnoughException;
 import com.vaixle.testapi.exception.NotFoundException;
 import com.vaixle.testapi.payload.response.AdviceErrorMessage;
 import jakarta.validation.ConstraintViolationException;
@@ -44,5 +45,11 @@ public class GlobalControllerAdvice {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public AdviceErrorMessage dataAccessException(DataAccessException ex) {
         return new AdviceErrorMessage(ex.getCause().getCause().getMessage());
+    }
+
+    @ExceptionHandler(value = NotEnoughException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public AdviceErrorMessage notEnoughException(NotEnoughException ex) {
+        return new AdviceErrorMessage(ex.getMessage());
     }
 }
