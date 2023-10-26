@@ -5,8 +5,6 @@ import com.vaixle.testapi.payload.response.CreateOrderResponse;
 import com.vaixle.testapi.payload.response.OrderResponse;
 import com.vaixle.testapi.payload.response.OrdersResponse;
 import com.vaixle.testapi.service.OrderService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
@@ -28,21 +26,15 @@ public class OrderController {
     OrderService orderService;
 
     @GetMapping
-    @Operation(summary = "Получить заказы",
-            description = "Возвращает список заказов с детальной информацией",
-            operationId = "getOrders")
+//    @ApiOperation(value = "Получить заказы", notes = "Получить список заказов", response = OrdersResponse.class)
     public OrdersResponse getOrders() {
         return orderService.getAllOrders();
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Получить заказ по ID",
-            description = "Возвращает заказ по ID с детальной информацией",
-            operationId = "getOrderById",
-            parameters = {
-                    @Parameter(name = "id", description = "ID заказа для извлечения", required = true, example = "123")
-            })
+//    @ApiOperation(value = "Получить заказ", notes = "Получить заказ по id", response = OrdersResponse.class)
     public OrderResponse getOrderById(
+//            @ApiParam(name = "id", value = "Id заказа", example = "1", required = true)
             @Pattern(regexp = "\\d+", message = "Некорректный id")
             @PathVariable String id) {
         return orderService.getOrderById(Long.parseLong(id));
@@ -50,10 +42,7 @@ public class OrderController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    @GetMapping("/{id}")
-    @Operation(summary = "Создать заказ",
-            description = "Создание заказа продуктов",
-            operationId = "createOrder")
+//    @ApiOperation(value = "Создать заказ", notes = "Создание заказа и покупателя", response = CreateOrderResponse.class)
     public CreateOrderResponse createOrder(@Valid  @RequestBody CreateOrderRequest createOrderRequest) {
         return orderService.createOrder(createOrderRequest);
     }

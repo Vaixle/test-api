@@ -2,7 +2,6 @@ package com.vaixle.testapi.controller.rest;
 
 import com.vaixle.testapi.model.dto.CustomerBaseDto;
 import com.vaixle.testapi.service.CustomerService;
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -23,9 +22,10 @@ public class CustomerController {
     CustomerService customerService;
 
     @GetMapping
-    @Operation(summary = "Получить покупателей",
-            description = "Возвращает список покупателей с детальной информацией",
-            operationId = "getCustomers")
+//    @ApiOperation(
+//            value = "Получить покупателей",
+//            notes = "Получить список покупателей",
+//            response = CustomerBaseDto.class)
     public List<CustomerBaseDto> getCustomers() {
         return customerService.getAllCustomers();
     }

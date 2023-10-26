@@ -3,7 +3,6 @@ package com.vaixle.testapi.controller.rest;
 import com.vaixle.testapi.payload.request.CreateOrderRequest;
 import com.vaixle.testapi.payload.response.CreateOrderResponse;
 import com.vaixle.testapi.service.OrderService;
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -23,9 +22,7 @@ public class OrderWithErrorController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "Создать заказ",
-            description = "Создание заказа продуктов",
-            operationId = "createOrderWithError")
+//    @ApiOperation(value = "Создать заказ", notes = "Создание заказа и покупателя", response = CreateOrderResponse.class)
     public CreateOrderResponse createOrder(@RequestBody CreateOrderRequest createOrderRequest) {
         return orderService.createOrder(createOrderRequest);
     }
