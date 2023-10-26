@@ -2,10 +2,7 @@ package com.vaixle.testapi.payload.request;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.io.Serial;
@@ -17,6 +14,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CreateProductRequest implements Serializable {
