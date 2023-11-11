@@ -12,6 +12,6 @@ Test api for QA testers.
 | **Build tool**  |![Apache Maven](https://img.shields.io/badge/Apache%20Maven-C71A36?style=for-the-badge&logo=Apache%20Maven&logoColor=white) |
 |    **PaaS**    | [![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)](https://www.heroku.com/) |
 
-### Main technologies
+### Deployed
 
 [Swagger](https://practice-api-qa.herokuapp.com/swagger-ui/index.html)
